@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "JPFanAppClient", targets: ["JPFanAppClient"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/cpageler93/Quack.git", from: "1.6.0"),
+        .package(url: "https://github.com/cpageler93/Quack.git", from: "1.8.0"),
     ],
     targets: [
         .target(name: "JPFanAppClient", dependencies: ["Quack"]),

@@ -18,6 +18,8 @@ public extension JPFanAppClient {
         var carModelID: Int
         var name: String
         let isStock: Bool
+        let createdAt: Date?
+        let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,
@@ -32,6 +34,8 @@ public extension JPFanAppClient {
             self.carModelID = carModelID
             self.name = name
             self.isStock = isStock
+            self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
+            self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
         public init(carModelID: Int, name: String, isStock: Bool) {
@@ -39,6 +43,8 @@ public extension JPFanAppClient {
             self.carModelID = carModelID
             self.name = name
             self.isStock = isStock
+            self.createdAt = nil
+            self.updatedAt = nil
         }
 
         internal func jsonBody() -> Quack.JSONBody {
@@ -56,7 +62,6 @@ public extension JPFanAppClient {
     public func stagesIndex() -> Quack.Result<[CarStage]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/stages",
-                                body: nil,
                                 headers: defaultHeader,
                                 model: CarStage.self)
     }
@@ -64,7 +69,6 @@ public extension JPFanAppClient {
     public func stagesIndex(completion: @escaping (Quack.Result<[CarStage]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/stages",
-                              body: nil,
                               headers: defaultHeader,
                               model: CarStage.self,
                               completion: completion)
@@ -168,6 +172,54 @@ public extension JPFanAppClient {
                               headers: defaultHeader,
                               model: StageTiming.self,
                               completion: completion)
+    }
+
+    // MARK: - Videos
+
+    public func stagesVideos(id: Int) -> Quack.Result<[YoutubeVideo]> {
+        return respondWithArray(method: .get,
+                                path: "/api/v1/stages/\(id)/videos",
+                                headers: defaultHeader,
+                                model: YoutubeVideo.self)
+    }
+
+    public func stagesVideos(id: Int,
+                              completion: @escaping (Quack.Result<[YoutubeVideo]>) -> Void) {
+        respondWithArrayAsync(method: .get,
+                              path: "/api/v1/stages/\(id)/videos",
+                              headers: defaultHeader,
+                              model: YoutubeVideo.self,
+                              completion: completion)
+    }
+
+    // MARK: - Add Relation
+
+    public func stagesVideosAdd(id: Int, videoID: Int) -> Quack.Void {
+        return respondVoid(method: .post,
+                           path: "/api/v1/stages/\(id)/videos/\(videoID)",
+                           headers: defaultAuthorizedHeader)
+    }
+
+    public func stagesVideosAdd(id: Int, videoID: Int, completion: @escaping (Quack.Void) -> Void) {
+        respondVoidAsync(method: .post,
+                         path: "/api/v1/stages/\(id)/videos/\(videoID)",
+                         headers: defaultAuthorizedHeader,
+                         completion: completion)
+    }
+
+    // MARK: - Remove Relation
+
+    public func stagesVideosRemove(id: Int, videoID: Int) -> Quack.Void {
+        return respondVoid(method: .delete,
+                           path: "/api/v1/stages/\(id)/videos/\(videoID)",
+                           headers: defaultAuthorizedHeader)
+    }
+
+    public func stagesVideosRemove(id: Int, videoID: Int, completion: @escaping (Quack.Void) -> Void) {
+        respondVoidAsync(method: .delete,
+                         path: "/api/v1/stages/\(id)/videos/\(videoID)",
+                         headers: defaultAuthorizedHeader,
+                         completion: completion)
     }
 
 }

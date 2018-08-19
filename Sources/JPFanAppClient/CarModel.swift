@@ -35,6 +35,8 @@ public extension JPFanAppClient {
         var transmissionType: TransmissionType
         var axleType: AxleType
         var mainImageID: Int?
+        let createdAt: Date?
+        let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,
@@ -54,6 +56,8 @@ public extension JPFanAppClient {
             self.transmissionType = transmissionType
             self.axleType = axleType
             self.mainImageID = json["mainImageID"].int
+            self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
+            self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
         public init(name: String,
@@ -67,6 +71,8 @@ public extension JPFanAppClient {
             self.transmissionType = transmissionType
             self.axleType = axleType
             self.mainImageID = mainImageID
+            self.createdAt = nil
+            self.updatedAt = nil
         }
 
         internal func jsonBody() -> Quack.JSONBody {
@@ -86,7 +92,6 @@ public extension JPFanAppClient {
     public func modelsIndex() -> Quack.Result<[CarModel]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/models",
-                                body: nil,
                                 headers: defaultHeader,
                                 model: CarModel.self)
     }
@@ -94,7 +99,6 @@ public extension JPFanAppClient {
     public func modelsIndex(completion: @escaping (Quack.Result<[CarModel]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/models",
-                              body: nil,
                               headers: defaultHeader,
                               model: CarModel.self,
                               completion: completion)

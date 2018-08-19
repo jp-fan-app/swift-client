@@ -18,6 +18,8 @@ public extension JPFanAppClient {
         var carModelID: Int
         var copyrightInformation: String
         let hasUpload: Bool
+        let createdAt: Date?
+        let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,
@@ -32,6 +34,8 @@ public extension JPFanAppClient {
             self.carModelID = carModelID
             self.copyrightInformation = copyrightInformation
             self.hasUpload = hasUpload
+            self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
+            self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
         public init(carModelID: Int, copyrightInformation: String) {
@@ -39,6 +43,8 @@ public extension JPFanAppClient {
             self.carModelID = carModelID
             self.copyrightInformation = copyrightInformation
             self.hasUpload = false
+            self.createdAt = nil
+            self.updatedAt = nil
         }
 
         internal func jsonBody() -> Quack.JSONBody {
@@ -65,7 +71,6 @@ public extension JPFanAppClient {
     public func imagesIndex() -> Quack.Result<[CarImage]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/images",
-                                body: nil,
                                 headers: defaultHeader,
                                 model: CarImage.self)
     }
@@ -73,7 +78,6 @@ public extension JPFanAppClient {
     public func imagesIndex(completion: @escaping (Quack.Result<[CarImage]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/images",
-                              body: nil,
                               headers: defaultHeader,
                               model: CarImage.self,
                               completion: completion)

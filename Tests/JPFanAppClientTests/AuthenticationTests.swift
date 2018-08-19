@@ -20,7 +20,7 @@ class AuthenticationTests: XCTestCase {
     // MARK: - Login
 
     func testValidLogin() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         let result = client.authLogin(email: TestData.email,
                                       password: TestData.password)
         switch result {
@@ -34,7 +34,7 @@ class AuthenticationTests: XCTestCase {
     func testValidLoginAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
 
         client.authLogin(email: TestData.email,
                          password: TestData.password)
@@ -54,7 +54,7 @@ class AuthenticationTests: XCTestCase {
     // MARK: - Change Password
 
     func testValidChangePassword() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let result = client.authChangePassword(password: TestData.password)
         switch result {
@@ -68,7 +68,7 @@ class AuthenticationTests: XCTestCase {
     func testValidChangePasswordAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
 
         client.authChangePassword(password: TestData.password) { result in

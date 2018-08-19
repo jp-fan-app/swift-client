@@ -24,5 +24,8 @@ public class TestData {
     public static var sampleImageFileURL: URL {
         return URL(fileURLWithPath: ProcessInfo.processInfo.environment["sampleImageFileURL"]!)
     }
+    public static var accessToken: String {
+        return ProcessInfo.processInfo.environment["accessToken"]!
+    }
 
 }

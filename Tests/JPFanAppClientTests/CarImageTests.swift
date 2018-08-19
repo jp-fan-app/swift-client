@@ -20,7 +20,7 @@ class CarImageTests: XCTestCase {
     ]
 
     func testImageUpload() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         
         let imageData = try! Data(contentsOf: TestData.sampleImageFileURL)
@@ -39,7 +39,7 @@ class CarImageTests: XCTestCase {
     func testImageUploadAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
 
         let imageData = try! Data(contentsOf: TestData.sampleImageFileURL)
@@ -61,7 +61,7 @@ class CarImageTests: XCTestCase {
     }
 
     func testImageFile() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         let result = client.imagesFile(id: 6)
         switch result {
         case .success(let file):
@@ -80,7 +80,7 @@ class CarImageTests: XCTestCase {
     func testImageFileAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.imagesFile(id: 6) { result in
             switch result {
             case .success(let file):

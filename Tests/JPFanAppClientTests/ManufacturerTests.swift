@@ -28,7 +28,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Index
 
     func testIndex() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         let result = client.manufacturersIndex()
         switch result {
         case .success(let manufacturers):
@@ -40,7 +40,7 @@ class ManufacturerTests: XCTestCase {
 
     func testIndexAsync() {
         let exp = expectation(description: "expectation")
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
 
         client.manufacturersIndex() { result in
             switch result {
@@ -59,7 +59,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Show
 
     func testShow() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         let result = client.manufacturersShow(id: 21)
         switch result {
         case .success(let manufacturer):
@@ -72,7 +72,7 @@ class ManufacturerTests: XCTestCase {
 
     func testShowAsync() {
         let exp = expectation(description: "expectation")
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
 
         client.manufacturersShow(id: 21) { result in
             switch result {
@@ -92,7 +92,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Create
 
     func testCreate() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let newModel = JPFanAppClient.ManufacturerModel(name: "Audi")
         let result = client.manufacturersCreate(manufacturer: newModel)
@@ -107,7 +107,7 @@ class ManufacturerTests: XCTestCase {
     func testCreateAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let newModel = JPFanAppClient.ManufacturerModel(name: "Audi")
         client.manufacturersCreate(manufacturer: newModel)
@@ -128,7 +128,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Patch
 
     func testPatch() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let newModel = JPFanAppClient.ManufacturerModel(name: "Audi")
         let result = client.manufacturersPatch(id: 21,
@@ -145,7 +145,7 @@ class ManufacturerTests: XCTestCase {
     func testPatchAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let newModel = JPFanAppClient.ManufacturerModel(name: "Audi")
         client.manufacturersPatch(id: 21,
@@ -168,7 +168,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Delete
 
     func testDelete() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         let result = client.manufacturersDelete(id: 23)
         switch result {
@@ -182,7 +182,7 @@ class ManufacturerTests: XCTestCase {
     func testDeleteAsync() {
         let exp = expectation(description: "expectation")
 
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         client.authToken = TestData.authToken
         client.manufacturersDelete(id: 24)
         { result in
@@ -202,7 +202,7 @@ class ManufacturerTests: XCTestCase {
     // MARK: - Models
 
     func testModels() {
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
         let result = client.manufacturersModels(id: 21)
         switch result {
         case .success(let models):
@@ -214,7 +214,7 @@ class ManufacturerTests: XCTestCase {
 
     func testModelsAsync() {
         let exp = expectation(description: "expectation")
-        let client = JPFanAppClient(url: TestData.url)
+        let client = JPFanAppClient(accessToken: TestData.accessToken, url: TestData.url)
 
         client.manufacturersModels(id: 21) { result in
             switch result {

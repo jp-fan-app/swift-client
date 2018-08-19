@@ -16,6 +16,8 @@ public extension JPFanAppClient {
 
         let id: Int?
         var name: String
+        let createdAt: Date?
+        let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,
@@ -26,11 +28,15 @@ public extension JPFanAppClient {
 
             self.id = id
             self.name = name
+            self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
+            self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
         public init(name: String) {
             self.id = nil
             self.name = name
+            self.createdAt = nil
+            self.updatedAt = nil
         }
 
     }
@@ -40,7 +46,6 @@ public extension JPFanAppClient {
     public func manufacturersIndex() -> Quack.Result<[ManufacturerModel]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/manufacturers",
-                                body: nil,
                                 headers: defaultHeader,
                                 model: ManufacturerModel.self)
     }
@@ -48,7 +53,6 @@ public extension JPFanAppClient {
     public func manufacturersIndex(completion: @escaping (Quack.Result<[ManufacturerModel]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/manufacturers",
-                              body: nil,
                               headers: defaultHeader,
                               model: ManufacturerModel.self,
                               completion: completion)

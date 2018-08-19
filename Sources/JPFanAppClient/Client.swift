@@ -12,7 +12,12 @@ import Quack
 
 public class JPFanAppClient: Quack.Client {
 
-    public init(url: URL) {
+    private let accessToken: String
+
+    public init(accessToken: String,
+                url: URL) {
+        self.accessToken = accessToken
+
         self.jsonEncodingModification = { request in
             var request = request
             request.encoding = .json
@@ -22,8 +27,9 @@ public class JPFanAppClient: Quack.Client {
         super.init(url: url)
     }
 
-    public static func production() -> JPFanAppClient {
-        return JPFanAppClient(url: URL(string: "http://178.128.203.132:80")!)
+    public static func production(accessToken: String) -> JPFanAppClient {
+        return JPFanAppClient(accessToken: accessToken,
+                              url: URL(string: "http://178.128.203.132:80")!)
     }
 
     typealias RequestModificationClosure = ((Quack.Request) -> (Quack.Request))
@@ -32,17 +38,30 @@ public class JPFanAppClient: Quack.Client {
 
     internal var defaultHeader: [String: String] {
         return [
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
         ]
     }
 
     internal var defaultAuthorizedHeader: [String: String] {
         return [
             "Content-Type": "application/json",
-            "Authorization": "Bearer \(authToken ?? "")"
+            "Authorization": "Bearer \(authToken ?? "")",
+            "x-access-token": accessToken
         ]
     }
 
     public var authToken: String? = nil
+
+    internal static var dateFormatter: DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        return df
+    }
+
+    internal static func date(from: String?) -> Date? {
+        guard let string = from else { return nil }
+        return dateFormatter.date(from: string)
+    }
 
 }

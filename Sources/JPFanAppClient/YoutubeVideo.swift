@@ -15,7 +15,7 @@ public extension JPFanAppClient {
     public class YoutubeVideo: Quack.Model {
 
         public let id: Int?
-        public let videoID: Int
+        public let videoID: String
         public let title: String
         public let description: String
         public let publishedAt: Date
@@ -25,7 +25,7 @@ public extension JPFanAppClient {
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,
-                let videoID = json["videoID"].int,
+                let videoID = json["videoID"].string,
                 let title = json["title"].string,
                 let description = json["description"].string,
                 let publishedAtString = json["publishedAt"].string,

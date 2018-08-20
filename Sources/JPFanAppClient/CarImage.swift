@@ -58,7 +58,7 @@ public extension JPFanAppClient {
 
     public class CarImageFile: Quack.DataModel {
 
-        let data: Data?
+        public let data: Data?
 
         public required init?(data: Data) {
             self.data = data

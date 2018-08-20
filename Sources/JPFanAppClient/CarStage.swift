@@ -60,6 +60,31 @@ public extension JPFanAppClient {
 
     }
 
+    public class CarStageYoutubeVideoRelation: Quack.Model {
+
+        public let id: Int?
+        public var carStageID: Int
+        public var youtubeVideoID: Int
+        public let createdAt: Date?
+        public let updatedAt: Date?
+
+        public required init?(json: JSON) {
+            guard let id = json["id"].int,
+                let carStageID = json["carStageID"].int,
+                let youtubeVideoID = json["youtubeVideoID"].int
+            else {
+                return nil
+            }
+
+            self.id = id
+            self.carStageID = carStageID
+            self.youtubeVideoID = youtubeVideoID
+            self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
+            self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
+        }
+
+    }
+
     // MARK: - Index
 
     public func stagesIndex() -> Quack.Result<[CarStage]> {
@@ -223,6 +248,23 @@ public extension JPFanAppClient {
                          path: "/api/v1/stages/\(id)/videos/\(videoID)",
                          headers: defaultAuthorizedHeader,
                          completion: completion)
+    }
+
+    // MARK: - Stages Videos Relations
+
+    public func stagesVideosRelations() -> Quack.Result<[CarStageYoutubeVideoRelation]> {
+        return respondWithArray(method: .get,
+                                path: "/api/v1/stagesVideosRelations",
+                                headers: defaultHeader,
+                                model: CarStageYoutubeVideoRelation.self)
+    }
+
+    public func stagesVideosRelations(completion: @escaping (Quack.Result<[CarStageYoutubeVideoRelation]>) -> Void) {
+        respondWithArrayAsync(method: .get,
+                              path: "/api/v1/stagesVideosRelations",
+                              headers: defaultHeader,
+                              model: CarStageYoutubeVideoRelation.self,
+                              completion: completion)
     }
 
 }

@@ -17,6 +17,7 @@ public extension JPFanAppClient {
         public let id: Int?
         public var carModelID: Int
         public var name: String
+        public var description: String
         public let isStock: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
@@ -33,15 +34,17 @@ public extension JPFanAppClient {
             self.id = id
             self.carModelID = carModelID
             self.name = name
+            self.description = json["description"].string ?? ""
             self.isStock = isStock
             self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
             self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
-        public init(carModelID: Int, name: String, isStock: Bool) {
+        public init(carModelID: Int, name: String, description: String, isStock: Bool) {
             self.id = nil
             self.carModelID = carModelID
             self.name = name
+            self.description = description
             self.isStock = isStock
             self.createdAt = nil
             self.updatedAt = nil

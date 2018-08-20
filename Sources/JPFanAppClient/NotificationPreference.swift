@@ -14,11 +14,11 @@ public extension JPFanAppClient {
 
     public class NotificationPreference: Quack.Model {
 
-        let id: Int?
-        let entityType: String
-        let entityID: String?
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public let entityType: String
+        public let entityID: String?
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

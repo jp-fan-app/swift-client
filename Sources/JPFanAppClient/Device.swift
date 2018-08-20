@@ -21,14 +21,14 @@ public extension JPFanAppClient {
 
         }
 
-        let id: Int?
-        let externalID: String?
-        let isTestDevice: Bool
-        var languageCode: String
-        var pushToken: String
-        var platform: Platform
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public let externalID: String?
+        public let isTestDevice: Bool
+        public var languageCode: String
+        public var pushToken: String
+        public var platform: Platform
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

@@ -14,14 +14,14 @@ public extension JPFanAppClient {
 
     public class YoutubeVideo: Quack.Model {
 
-        let id: Int?
-        let videoID: Int
-        let title: String
-        let description: String
-        let publishedAt: Date
-        let thumbnailURL: String
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public let videoID: Int
+        public let title: String
+        public let description: String
+        public let publishedAt: Date
+        public let thumbnailURL: String
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

@@ -14,12 +14,12 @@ public extension JPFanAppClient {
 
     public class CarImage: Quack.Model {
 
-        let id: Int?
-        var carModelID: Int
-        var copyrightInformation: String
-        let hasUpload: Bool
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public var carModelID: Int
+        public var copyrightInformation: String
+        public let hasUpload: Bool
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

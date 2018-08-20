@@ -14,14 +14,14 @@ public extension JPFanAppClient {
 
     public class StageTiming: Quack.Model {
 
-        let id: Int?
-        var stageID: Int
-        var range: String
-        let second1: Double?
-        let second2: Double?
-        let second3: Double?
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public var stageID: Int
+        public var range: String
+        public let second1: Double?
+        public let second2: Double?
+        public let second3: Double?
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

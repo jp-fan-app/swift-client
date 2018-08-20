@@ -29,14 +29,14 @@ public extension JPFanAppClient {
 
         }
 
-        let id: Int?
-        var name: String
-        var manufacturerID: Int
-        var transmissionType: TransmissionType
-        var axleType: AxleType
-        var mainImageID: Int?
-        let createdAt: Date?
-        let updatedAt: Date?
+        public let id: Int?
+        public var name: String
+        public var manufacturerID: Int
+        public var transmissionType: TransmissionType
+        public var axleType: AxleType
+        public var mainImageID: Int?
+        public let createdAt: Date?
+        public let updatedAt: Date?
 
         public required init?(json: JSON) {
             guard let id = json["id"].int,

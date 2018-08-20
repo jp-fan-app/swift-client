@@ -19,6 +19,8 @@ public extension JPFanAppClient {
         public var name: String
         public var description: String
         public let isStock: Bool
+        public let ps: Double?
+        public let nm: Double?
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -36,16 +38,25 @@ public extension JPFanAppClient {
             self.name = name
             self.description = json["description"].string ?? ""
             self.isStock = isStock
+            self.ps = json["ps"].double
+            self.nm = json["nm"].double
             self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
             self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
-        public init(carModelID: Int, name: String, description: String, isStock: Bool) {
+        public init(carModelID: Int,
+                    name: String,
+                    description: String,
+                    isStock: Bool,
+                    ps: Double?,
+                    nm: Double?) {
             self.id = nil
             self.carModelID = carModelID
             self.name = name
             self.description = description
             self.isStock = isStock
+            self.ps = ps
+            self.nm = nm
             self.createdAt = nil
             self.updatedAt = nil
         }
@@ -54,7 +65,9 @@ public extension JPFanAppClient {
             return Quack.JSONBody([
                 "carModelID": carModelID,
                 "name": name,
-                "isStock": isStock
+                "isStock": isStock,
+                "ps": ps as Any,
+                "nm": nm as Any
             ])
         }
 

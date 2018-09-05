@@ -213,7 +213,7 @@ public extension JPFanAppClient {
 
     public func devicesPing(pushToken: String,
                             completion: @escaping (Quack.Void) -> Void) {
-        respondVoidAsync(method: .get,
+        respondVoidAsync(method: .post,
                          path: "/api/v1/devices/\(pushToken)/ping",
                          headers: defaultHeader,
                          completion: completion)
@@ -245,7 +245,8 @@ public extension JPFanAppClient {
                        path: "/api/v1/devices/\(pushToken)/notificationPreferences",
                        body: notificationPreference.jsonBody(),
                        headers: defaultHeader,
-                       model: NotificationPreference.self)
+                       model: NotificationPreference.self,
+                       requestModification: jsonEncodingModification)
     }
 
     public func devicesNotificationPreferencesCreate(pushToken: String,
@@ -256,6 +257,7 @@ public extension JPFanAppClient {
                      body: notificationPreference.jsonBody(),
                      headers: defaultHeader,
                      model: NotificationPreference.self,
+                     requestModification: jsonEncodingModification,
                      completion: completion)
     }
 

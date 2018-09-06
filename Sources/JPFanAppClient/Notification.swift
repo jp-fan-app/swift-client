@@ -64,7 +64,8 @@ public extension JPFanAppClient {
         return respondVoid(method: .post,
                            path: "/api/v1/notifications/sendNotificationForEntityPair",
                            body: body,
-                           headers: defaultAuthorizedHeader)
+                           headers: defaultAuthorizedHeader,
+                           requestModification: jsonEncodingModification)
     }
 
     public func notificationsSendNotificationForEntityPair(_ entityPair: EntityPair,
@@ -77,6 +78,7 @@ public extension JPFanAppClient {
                          path: "/api/v1/notifications/sendNotificationForEntityPair",
                          body: body,
                          headers: defaultAuthorizedHeader,
+                         requestModification: jsonEncodingModification,
                          completion: completion)
     }
 

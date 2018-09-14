@@ -29,7 +29,7 @@ public class JPFanAppClient: Quack.Client {
 
     public static func production(accessToken: String) -> JPFanAppClient {
         return JPFanAppClient(accessToken: accessToken,
-                              url: URL(string: "http://178.128.203.132:80")!)
+                              url: URL(string: "https://api.jp-fan-app.de")!)
     }
 
     typealias RequestModificationClosure = ((Quack.Request) -> (Quack.Request))

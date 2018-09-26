@@ -17,9 +17,9 @@ public extension JPFanAppClient {
         public let id: Int?
         public var stageID: Int
         public var range: String
-        public let second1: Double?
-        public let second2: Double?
-        public let second3: Double?
+        public var second1: Double?
+        public var second2: Double?
+        public var second3: Double?
         public let createdAt: Date?
         public let updatedAt: Date?
 

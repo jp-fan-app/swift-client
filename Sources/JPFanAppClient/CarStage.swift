@@ -18,9 +18,9 @@ public extension JPFanAppClient {
         public var carModelID: Int
         public var name: String
         public var description: String
-        public let isStock: Bool
-        public let ps: Double?
-        public let nm: Double?
+        public var isStock: Bool
+        public var ps: Double?
+        public var nm: Double?
         public let createdAt: Date?
         public let updatedAt: Date?
 

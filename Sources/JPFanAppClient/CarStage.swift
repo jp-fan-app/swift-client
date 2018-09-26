@@ -65,6 +65,7 @@ public extension JPFanAppClient {
             return Quack.JSONBody([
                 "carModelID": carModelID,
                 "name": name,
+                "description": description,
                 "isStock": isStock,
                 "ps": ps as Any,
                 "nm": nm as Any

@@ -38,6 +38,17 @@ public extension JPFanAppClient {
             self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
 
+        public init(title: String,
+                    description: String,
+                    isPublic: Bool) {
+            self.id = nil
+            self.title = title
+            self.description = description
+            self.isPublic = isPublic
+            self.createdAt = nil
+            self.updatedAt = nil
+        }
+
         internal func jsonBody() -> Quack.JSONBody {
             return Quack.JSONBody([
                 "title": title,

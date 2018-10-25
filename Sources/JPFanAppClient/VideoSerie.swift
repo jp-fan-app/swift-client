@@ -15,9 +15,9 @@ public extension JPFanAppClient {
     public class VideoSerie: Quack.Model {
 
         public let id: Int?
-        public let title: String
-        public let description: String
-        public let isPublic: Bool
+        public var title: String
+        public var description: String
+        public var isPublic: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 

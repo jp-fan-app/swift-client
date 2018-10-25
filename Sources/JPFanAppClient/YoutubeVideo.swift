@@ -118,4 +118,22 @@ public extension JPFanAppClient {
                               completion: completion)
     }
 
+    // MARK: - Video Series
+
+    public func videosVideoSeries(id: Int) -> Quack.Result<[VideoSerie]> {
+        return respondWithArray(method: .get,
+                                path: "/api/v1/videos/\(id)/videoSeries",
+                                headers: defaultHeader,
+                                model: VideoSerie.self)
+    }
+
+    public func videosVideoSeries(id: Int,
+                                  completion: @escaping (Quack.Result<[VideoSerie]>) -> Void) {
+        respondWithArrayAsync(method: .get,
+                              path: "/api/v1/videos/\(id)/videoSeries",
+                              headers: defaultHeader,
+                              model: VideoSerie.self,
+                              completion: completion)
+    }
+
 }

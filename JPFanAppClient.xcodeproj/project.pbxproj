@@ -26,6 +26,7 @@
 		590CD61721272DE300D5972E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CD61621272DE300D5972E /* Device.swift */; };
 		590CD6192127313100D5972E /* NotificationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CD6182127313100D5972E /* NotificationPreference.swift */; };
 		590CD61B2127336900D5972E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CD61A2127336900D5972E /* Notification.swift */; };
+		592BAFF42181BA4D00AD400C /* VideoSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BAFF32181BA4D00AD400C /* VideoSerie.swift */; };
 		59C0B3692126D4A900509DCF /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C0B3682126D4A900509DCF /* Client.swift */; };
 		59C0B36B2126D60000509DCF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C0B36A2126D60000509DCF /* Authentication.swift */; };
 		59C0B36D2126D97000509DCF /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C0B36C2126D97000509DCF /* AuthenticationTests.swift */; };
@@ -188,6 +189,7 @@
 		590CD61621272DE300D5972E /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		590CD6182127313100D5972E /* NotificationPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
 		590CD61A2127336900D5972E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		592BAFF32181BA4D00AD400C /* VideoSerie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSerie.swift; sourceTree = "<group>"; };
 		59C0B3682126D4A900509DCF /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		59C0B36A2126D60000509DCF /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		59C0B36C2126D97000509DCF /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				590CD61621272DE300D5972E /* Device.swift */,
 				590CD6182127313100D5972E /* NotificationPreference.swift */,
 				590CD61A2127336900D5972E /* Notification.swift */,
+				592BAFF32181BA4D00AD400C /* VideoSerie.swift */,
 			);
 			name = JPFanAppClient;
 			path = Sources/JPFanAppClient;
@@ -817,6 +820,7 @@
 				590CD61721272DE300D5972E /* Device.swift in Sources */,
 				59C0B3772126F54D00509DCF /* CarImage.swift in Sources */,
 				590CD6192127313100D5972E /* NotificationPreference.swift in Sources */,
+				592BAFF42181BA4D00AD400C /* VideoSerie.swift in Sources */,
 				590CD613212712E800D5972E /* StageTiming.swift in Sources */,
 				59C0B36B2126D60000509DCF /* Authentication.swift in Sources */,
 				590CD61B2127336900D5972E /* Notification.swift in Sources */,

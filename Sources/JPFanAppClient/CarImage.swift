@@ -112,7 +112,7 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func imagesCreate(image: CarModel,
+    public func imagesCreate(image: CarImage,
                              completion: @escaping (Quack.Result<CarImage>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/images",

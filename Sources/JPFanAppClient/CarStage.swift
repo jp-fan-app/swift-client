@@ -21,6 +21,7 @@ public extension JPFanAppClient {
         public var isStock: Bool
         public var ps: Double?
         public var nm: Double?
+        public var lasiseInSeconds: Double?
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -40,6 +41,7 @@ public extension JPFanAppClient {
             self.isStock = isStock
             self.ps = json["ps"].double
             self.nm = json["nm"].double
+            self.lasiseInSeconds = json["lasiseInSeconds"].double
             self.createdAt = JPFanAppClient.date(from: json["createdAt"].string)
             self.updatedAt = JPFanAppClient.date(from: json["updatedAt"].string)
         }
@@ -49,7 +51,8 @@ public extension JPFanAppClient {
                     description: String,
                     isStock: Bool,
                     ps: Double?,
-                    nm: Double?) {
+                    nm: Double?,
+                    lasiseInSeconds: Double?) {
             self.id = nil
             self.carModelID = carModelID
             self.name = name
@@ -57,6 +60,7 @@ public extension JPFanAppClient {
             self.isStock = isStock
             self.ps = ps
             self.nm = nm
+            self.lasiseInSeconds = lasiseInSeconds
             self.createdAt = nil
             self.updatedAt = nil
         }
@@ -68,7 +72,8 @@ public extension JPFanAppClient {
                 "description": description,
                 "isStock": isStock,
                 "ps": ps as Any,
-                "nm": nm as Any
+                "nm": nm as Any,
+                "lasiseInSeconds": lasiseInSeconds as Any
             ])
         }
 

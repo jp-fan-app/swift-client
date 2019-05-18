@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class CarImage: Quack.Model {
+    class CarImage: Quack.Model {
 
         public let id: Int?
         public var carModelID: Int
@@ -56,7 +56,7 @@ public extension JPFanAppClient {
 
     }
 
-    public class CarImageFile: Quack.DataModel {
+    class CarImageFile: Quack.DataModel {
 
         public let data: Data?
 
@@ -68,14 +68,14 @@ public extension JPFanAppClient {
 
     // MARK: - Index
 
-    public func imagesIndex() -> Quack.Result<[CarImage]> {
+    func imagesIndex() -> Quack.Result<[CarImage]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/images",
                                 headers: defaultHeader,
                                 model: CarImage.self)
     }
 
-    public func imagesIndex(completion: @escaping (Quack.Result<[CarImage]>) -> Void) {
+    func imagesIndex(completion: @escaping (Quack.Result<[CarImage]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/images",
                               headers: defaultHeader,
@@ -85,15 +85,15 @@ public extension JPFanAppClient {
 
     // MARK: - Show
 
-    public func imagesShow(id: Int) -> Quack.Result<CarImage> {
+    func imagesShow(id: Int) -> Quack.Result<CarImage> {
         return respond(method: .get,
                        path: "/api/v1/images/\(id)",
                        headers: defaultHeader,
                        model: CarImage.self)
     }
 
-    public func imagesShow(id: Int,
-                           completion: @escaping (Quack.Result<CarImage>) -> Void) {
+    func imagesShow(id: Int,
+                    completion: @escaping (Quack.Result<CarImage>) -> Void) {
         respondAsync(method: .get,
                      path: "/api/v1/images/\(id)",
                      headers: defaultHeader,
@@ -103,7 +103,7 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-    public func imagesCreate(image: CarImage) -> Quack.Result<CarImage> {
+    func imagesCreate(image: CarImage) -> Quack.Result<CarImage> {
         return respond(method: .post,
                        path: "/api/v1/images",
                        body: image.jsonBody(),
@@ -112,8 +112,8 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func imagesCreate(image: CarImage,
-                             completion: @escaping (Quack.Result<CarImage>) -> Void) {
+    func imagesCreate(image: CarImage,
+                      completion: @escaping (Quack.Result<CarImage>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/images",
                      body: image.jsonBody(),
@@ -125,8 +125,8 @@ public extension JPFanAppClient {
 
     // MARK: - Patch
 
-    public func imagesPatch(id: Int,
-                            image: CarImage) -> Quack.Result<CarImage> {
+    func imagesPatch(id: Int,
+                     image: CarImage) -> Quack.Result<CarImage> {
         return respond(method: .patch,
                        path: "/api/v1/images/\(id)",
                        body: image.jsonBody(),
@@ -135,9 +135,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func imagesPatch(id: Int,
-                            image: CarImage,
-                            completion: @escaping (Quack.Result<CarImage>) -> Void) {
+    func imagesPatch(id: Int,
+                     image: CarImage,
+                     completion: @escaping (Quack.Result<CarImage>) -> Void) {
         respondAsync(method: .patch,
                      path: "/api/v1/images/\(id)",
                      body: image.jsonBody(),
@@ -149,15 +149,15 @@ public extension JPFanAppClient {
 
     // MARK: - Delete
 
-    public func imagesDelete(id: Int) -> Quack.Void {
+    func imagesDelete(id: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/images/\(id)",
                            headers: defaultAuthorizedHeader,
                            requestModification: jsonEncodingModification)
     }
 
-    public func imagesDelete(id: Int,
-                             completion: @escaping (Quack.Void) -> Void) {
+    func imagesDelete(id: Int,
+                      completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/images/\(id)",
                          headers: defaultAuthorizedHeader,
@@ -167,8 +167,8 @@ public extension JPFanAppClient {
 
     // MARK: - Upload
 
-    public func imagesUpload(id: Int,
-                             imageData: Data) -> Quack.Void {
+    func imagesUpload(id: Int,
+                      imageData: Data) -> Quack.Void {
         let boundary = NSUUID().uuidString
         var headers = defaultAuthorizedHeader
         headers["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
@@ -184,9 +184,9 @@ public extension JPFanAppClient {
                            headers: headers)
     }
 
-    public func imagesUpload(id: Int,
-                             imageData: Data,
-                             completion: @escaping (Quack.Void) -> Void) {
+    func imagesUpload(id: Int,
+                      imageData: Data,
+                      completion: @escaping (Quack.Void) -> Void) {
         let boundary = NSUUID().uuidString
         var headers = defaultAuthorizedHeader
         headers["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
@@ -205,15 +205,15 @@ public extension JPFanAppClient {
 
     // MARK: - File
 
-    public func imagesFile(id: Int) -> Quack.Result<CarImageFile> {
+    func imagesFile(id: Int) -> Quack.Result<CarImageFile> {
         return respond(method: .get,
                        path: "/api/v1/images/\(id)/file",
                        headers: defaultHeader,
                        model: CarImageFile.self)
     }
 
-    public func imagesFile(id: Int,
-                           completion: @escaping (Quack.Result<CarImageFile>) -> Void) {
+    func imagesFile(id: Int,
+                    completion: @escaping (Quack.Result<CarImageFile>) -> Void) {
         return respondAsync(method: .get,
                             path: "/api/v1/images/\(id)/file",
                             headers: defaultHeader,

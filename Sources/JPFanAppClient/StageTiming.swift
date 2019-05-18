@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class StageTiming: Quack.Model {
+    class StageTiming: Quack.Model {
 
         public let id: Int?
         public var stageID: Int
@@ -70,14 +70,14 @@ public extension JPFanAppClient {
 
     // MARK: - Index
 
-    public func timingsIndex() -> Quack.Result<[StageTiming]> {
+    func timingsIndex() -> Quack.Result<[StageTiming]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/timings",
                                 headers: defaultHeader,
                                 model: StageTiming.self)
     }
 
-    public func timingsIndex(completion: @escaping (Quack.Result<[StageTiming]>) -> Void) {
+    func timingsIndex(completion: @escaping (Quack.Result<[StageTiming]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/timings",
                               headers: defaultHeader,
@@ -87,15 +87,14 @@ public extension JPFanAppClient {
 
     // MARK: - Show
 
-    public func timingsShow(id: Int) -> Quack.Result<StageTiming> {
+    func timingsShow(id: Int) -> Quack.Result<StageTiming> {
         return respond(method: .get,
                        path: "/api/v1/timings/\(id)",
                        headers: defaultHeader,
                        model: StageTiming.self)
     }
 
-    public func timingsShow(id: Int,
-                           completion: @escaping (Quack.Result<StageTiming>) -> Void) {
+    func timingsShow(id: Int, completion: @escaping (Quack.Result<StageTiming>) -> Void) {
         respondAsync(method: .get,
                      path: "/api/v1/timings/\(id)",
                      headers: defaultHeader,
@@ -105,7 +104,7 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-    public func timingsCreate(timing: StageTiming) -> Quack.Result<StageTiming> {
+    func timingsCreate(timing: StageTiming) -> Quack.Result<StageTiming> {
         return respond(method: .post,
                        path: "/api/v1/timings",
                        body: timing.jsonBody(),
@@ -114,8 +113,7 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func timingsCreate(timing: StageTiming,
-                              completion: @escaping (Quack.Result<StageTiming>) -> Void) {
+    func timingsCreate(timing: StageTiming, completion: @escaping (Quack.Result<StageTiming>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/timings",
                      body: timing.jsonBody(),
@@ -127,8 +125,7 @@ public extension JPFanAppClient {
 
     // MARK: - Patch
 
-    public func timingsPatch(id: Int,
-                            timing: StageTiming) -> Quack.Result<StageTiming> {
+    func timingsPatch(id: Int, timing: StageTiming) -> Quack.Result<StageTiming> {
         return respond(method: .patch,
                        path: "/api/v1/timings/\(id)",
                        body: timing.jsonBody(),
@@ -137,9 +134,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func timingsPatch(id: Int,
-                            timing: StageTiming,
-                            completion: @escaping (Quack.Result<StageTiming>) -> Void) {
+    func timingsPatch(id: Int,
+                      timing: StageTiming,
+                      completion: @escaping (Quack.Result<StageTiming>) -> Void) {
         respondAsync(method: .patch,
                      path: "/api/v1/timings/\(id)",
                      body: timing.jsonBody(),
@@ -151,15 +148,14 @@ public extension JPFanAppClient {
 
     // MARK: - Delete
 
-    public func timingsDelete(id: Int) -> Quack.Void {
+    func timingsDelete(id: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/timings/\(id)",
                            headers: defaultAuthorizedHeader,
                            requestModification: jsonEncodingModification)
     }
 
-    public func timingsDelete(id: Int,
-                             completion: @escaping (Quack.Void) -> Void) {
+    func timingsDelete(id: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/timings/\(id)",
                          headers: defaultAuthorizedHeader,

@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class NotificationPreference: Quack.Model {
+    class NotificationPreference: Quack.Model {
 
         public let id: Int?
         public let entityType: String

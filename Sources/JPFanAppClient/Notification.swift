@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class EntityPair {
+    class EntityPair {
 
         public let entityType: String
         public let entityID: String
@@ -26,7 +26,7 @@ public extension JPFanAppClient {
 
     // MARK: - Devices for EntityPair
 
-    public func notificationsDevicesForEntityPair(_ entityPair: EntityPair) -> Quack.Result<[Device]> {
+    func notificationsDevicesForEntityPair(_ entityPair: EntityPair) -> Quack.Result<[Device]> {
         let params = [
             "entityType": entityPair.entityType,
             "entityID": entityPair.entityID
@@ -39,8 +39,8 @@ public extension JPFanAppClient {
                                 model: Device.self)
     }
 
-    public func notificationsDevicesForEntityPair(_ entityPair: EntityPair,
-                                                  completion: @escaping (Quack.Result<[Device]>) -> Void) {
+    func notificationsDevicesForEntityPair(_ entityPair: EntityPair,
+                                           completion: @escaping (Quack.Result<[Device]>) -> Void) {
         let params = [
             "entityType": entityPair.entityType,
             "entityID": entityPair.entityID
@@ -56,7 +56,7 @@ public extension JPFanAppClient {
 
     // MARK: - Send Notification for EntityPair
 
-    public func notificationsSendNotificationForEntityPair(_ entityPair: EntityPair) -> Quack.Void {
+    func notificationsSendNotificationForEntityPair(_ entityPair: EntityPair) -> Quack.Void {
         let body = Quack.JSONBody([
             "entityType": entityPair.entityType,
             "entityID": entityPair.entityID
@@ -68,8 +68,8 @@ public extension JPFanAppClient {
                            requestModification: jsonEncodingModification)
     }
 
-    public func notificationsSendNotificationForEntityPair(_ entityPair: EntityPair,
-                                                           completion: @escaping (Quack.Void) -> Void) {
+    func notificationsSendNotificationForEntityPair(_ entityPair: EntityPair,
+                                                    completion: @escaping (Quack.Void) -> Void) {
         let body = Quack.JSONBody([
             "entityType": entityPair.entityType,
             "entityID": entityPair.entityID
@@ -84,14 +84,13 @@ public extension JPFanAppClient {
 
     // MARK: - Track notification
 
-    public func notificationsTrack(id: String) -> Quack.Void {
+    func notificationsTrack(id: String) -> Quack.Void {
         return respondVoid(method: .post,
                            path: "/api/v1/notifications/track/\(id)",
                            headers: defaultHeader)
     }
 
-    public func notificationsTrack(id: String,
-                                   completion: @escaping (Quack.Void) -> Void) {
+    func notificationsTrack(id: String, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .post,
                          path: "/api/v1/notifications/track/\(id)",
                          headers: defaultHeader,

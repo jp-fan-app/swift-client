@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class ManufacturerModel: Quack.Model {
+    class ManufacturerModel: Quack.Model {
 
         public let id: Int?
         public var name: String
@@ -43,14 +43,14 @@ public extension JPFanAppClient {
 
     // MARK: - Index
 
-    public func manufacturersIndex() -> Quack.Result<[ManufacturerModel]> {
+    func manufacturersIndex() -> Quack.Result<[ManufacturerModel]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/manufacturers",
                                 headers: defaultHeader,
                                 model: ManufacturerModel.self)
     }
 
-    public func manufacturersIndex(completion: @escaping (Quack.Result<[ManufacturerModel]>) -> Void) {
+    func manufacturersIndex(completion: @escaping (Quack.Result<[ManufacturerModel]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/manufacturers",
                               headers: defaultHeader,
@@ -60,15 +60,14 @@ public extension JPFanAppClient {
 
     // MARK: - Show
 
-    public func manufacturersShow(id: Int) -> Quack.Result<ManufacturerModel> {
+    func manufacturersShow(id: Int) -> Quack.Result<ManufacturerModel> {
         return respond(method: .get,
                        path: "/api/v1/manufacturers/\(id)",
                        headers: defaultHeader,
                        model: ManufacturerModel.self)
     }
 
-    public func manufacturersShow(id: Int,
-                                  completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
+    func manufacturersShow(id: Int, completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
         respondAsync(method: .get,
                      path: "/api/v1/manufacturers/\(id)",
                      headers: defaultHeader,
@@ -78,7 +77,7 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-    public func manufacturersCreate(manufacturer: ManufacturerModel) -> Quack.Result<ManufacturerModel> {
+    func manufacturersCreate(manufacturer: ManufacturerModel) -> Quack.Result<ManufacturerModel> {
         let body = Quack.JSONBody([
             "name" : manufacturer.name
         ])
@@ -90,8 +89,8 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func manufacturersCreate(manufacturer: ManufacturerModel,
-                                   completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
+    func manufacturersCreate(manufacturer: ManufacturerModel,
+                             completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
         let body = Quack.JSONBody([
             "name" : manufacturer.name
         ])
@@ -106,8 +105,7 @@ public extension JPFanAppClient {
 
     // MARK: - Patch
 
-    public func manufacturersPatch(id: Int,
-                                   manufacturer: ManufacturerModel) -> Quack.Result<ManufacturerModel> {
+    func manufacturersPatch(id: Int, manufacturer: ManufacturerModel) -> Quack.Result<ManufacturerModel> {
         let body = Quack.JSONBody([
             "name" : manufacturer.name
         ])
@@ -119,9 +117,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func manufacturersPatch(id: Int,
-                                   manufacturer: ManufacturerModel,
-                                   completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
+    func manufacturersPatch(id: Int,
+                            manufacturer: ManufacturerModel,
+                            completion: @escaping (Quack.Result<ManufacturerModel>) -> Void) {
         let body = Quack.JSONBody([
             "name" : manufacturer.name
         ])
@@ -136,15 +134,14 @@ public extension JPFanAppClient {
 
     // MARK: - Delete
 
-    public func manufacturersDelete(id: Int) -> Quack.Void {
+    func manufacturersDelete(id: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/manufacturers/\(id)",
                            headers: defaultAuthorizedHeader,
                            requestModification: jsonEncodingModification)
     }
 
-    public func manufacturersDelete(id: Int,
-                                   completion: @escaping (Quack.Void) -> Void) {
+    func manufacturersDelete(id: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/manufacturers/\(id)",
                          headers: defaultAuthorizedHeader,
@@ -154,15 +151,14 @@ public extension JPFanAppClient {
 
     // MARK: - Models
 
-    public func manufacturersModels(id: Int) -> Quack.Result<[CarModel]> {
+    func manufacturersModels(id: Int) -> Quack.Result<[CarModel]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/manufacturers/\(id)/models",
                                 headers: defaultHeader,
                                 model: CarModel.self)
     }
 
-    public func manufacturersModels(id: Int,
-                                    completion: @escaping (Quack.Result<[CarModel]>) -> Void) {
+    func manufacturersModels(id: Int, completion: @escaping (Quack.Result<[CarModel]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/manufacturers/\(id)/models",
                               headers: defaultHeader,

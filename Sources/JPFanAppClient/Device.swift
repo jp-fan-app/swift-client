@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class Device: Quack.Model {
+    class Device: Quack.Model {
 
         public enum Platform: Int, Codable {
 
@@ -76,14 +76,14 @@ public extension JPFanAppClient {
 
     // MARK: - Index
 
-    public func devicesIndex() -> Quack.Result<[Device]> {
+    func devicesIndex() -> Quack.Result<[Device]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/devices",
                                 headers: defaultAuthorizedHeader,
                                 model: Device.self)
     }
 
-    public func devicesIndex(completion: @escaping (Quack.Result<[Device]>) -> Void) {
+    func devicesIndex(completion: @escaping (Quack.Result<[Device]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/devices",
                               headers: defaultAuthorizedHeader,
@@ -93,15 +93,15 @@ public extension JPFanAppClient {
 
     // MARK: - Show
 
-    public func devicesShow(pushToken: String) -> Quack.Result<Device> {
+    func devicesShow(pushToken: String) -> Quack.Result<Device> {
         return respond(method: .get,
                        path: "/api/v1/devices/\(pushToken)",
                        headers: defaultHeader,
                        model: Device.self)
     }
 
-    public func devicesShow(pushToken: String,
-                            completion: @escaping (Quack.Result<Device>) -> Void) {
+    func devicesShow(pushToken: String,
+                     completion: @escaping (Quack.Result<Device>) -> Void) {
         respondAsync(method: .get,
                      path: "/api/v1/devices/\(pushToken)",
                      headers: defaultHeader,
@@ -111,7 +111,7 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-    public func devicesCreate(device: Device) -> Quack.Result<Device> {
+    func devicesCreate(device: Device) -> Quack.Result<Device> {
         return respond(method: .post,
                        path: "/api/v1/devices",
                        body: device.jsonBody(),
@@ -120,8 +120,8 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func devicesCreate(device: Device,
-                              completion: @escaping (Quack.Result<Device>) -> Void) {
+    func devicesCreate(device: Device,
+                       completion: @escaping (Quack.Result<Device>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/devices",
                      body: device.jsonBody(),
@@ -133,8 +133,8 @@ public extension JPFanAppClient {
 
     // MARK: - Patch
 
-    public func devicesPatch(pushToken: String,
-                             device: Device) -> Quack.Result<Device> {
+    func devicesPatch(pushToken: String,
+                      device: Device) -> Quack.Result<Device> {
         return respond(method: .patch,
                        path: "/api/v1/devices/\(pushToken)",
                        body: device.jsonBody(),
@@ -143,9 +143,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func devicesPatch(pushToken: String,
-                             device: Device,
-                             completion: @escaping (Quack.Result<Device>) -> Void) {
+    func devicesPatch(pushToken: String,
+                      device: Device,
+                      completion: @escaping (Quack.Result<Device>) -> Void) {
         respondAsync(method: .patch,
                      path: "/api/v1/devices/\(pushToken)",
                      body: device.jsonBody(),
@@ -157,15 +157,15 @@ public extension JPFanAppClient {
 
     // MARK: - Delete
 
-    public func devicesDelete(pushToken: String) -> Quack.Void {
+    func devicesDelete(pushToken: String) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/devices/\(pushToken)",
                            headers: defaultHeader,
                            requestModification: jsonEncodingModification)
     }
 
-    public func devicesDelete(pushToken: String,
-                              completion: @escaping (Quack.Void) -> Void) {
+    func devicesDelete(pushToken: String,
+                       completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/devices/\(pushToken)",
                          headers: defaultHeader,
@@ -175,8 +175,8 @@ public extension JPFanAppClient {
 
     // MARK: - Set Test Device
 
-    public func devicesSetTestDevice(pushToken: String,
-                                     isTestDevice: Bool) -> Quack.Result<Device> {
+    func devicesSetTestDevice(pushToken: String,
+                              isTestDevice: Bool) -> Quack.Result<Device> {
         let body = Quack.JSONBody([
             "bool": isTestDevice
         ])
@@ -188,9 +188,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func devicesSetTestDevice(pushToken: String,
-                                     isTestDevice: Bool,
-                                     completion: @escaping (Quack.Result<Device>) -> Void) {
+    func devicesSetTestDevice(pushToken: String,
+                              isTestDevice: Bool,
+                              completion: @escaping (Quack.Result<Device>) -> Void) {
         let body = Quack.JSONBody([
             "bool": isTestDevice
         ])
@@ -205,14 +205,14 @@ public extension JPFanAppClient {
 
     // MARK: - Ping
 
-    public func devicesPing(pushToken: String) -> Quack.Void {
+    func devicesPing(pushToken: String) -> Quack.Void {
         return respondVoid(method: .post,
                            path: "/api/v1/devices/\(pushToken)/ping",
                            headers: defaultHeader)
     }
 
-    public func devicesPing(pushToken: String,
-                            completion: @escaping (Quack.Void) -> Void) {
+    func devicesPing(pushToken: String,
+                     completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .post,
                          path: "/api/v1/devices/\(pushToken)/ping",
                          headers: defaultHeader,
@@ -221,15 +221,15 @@ public extension JPFanAppClient {
 
     // MARK: - NotificationPreferences
 
-    public func devicesNotificationPreferences(pushToken: String) -> Quack.Result<[NotificationPreference]> {
+    func devicesNotificationPreferences(pushToken: String) -> Quack.Result<[NotificationPreference]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/devices/\(pushToken)/notificationPreferences",
                                 headers: defaultHeader,
                                 model: NotificationPreference.self)
     }
 
-    public func devicesNotificationPreferences(pushToken: String,
-                                               completion: @escaping (Quack.Result<[NotificationPreference]>) -> Void) {
+    func devicesNotificationPreferences(pushToken: String,
+                                        completion: @escaping (Quack.Result<[NotificationPreference]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/devices/\(pushToken)/notificationPreferences",
                               headers: defaultHeader,
@@ -239,8 +239,8 @@ public extension JPFanAppClient {
 
     // MARK: - Create NotificationPreference
 
-    public func devicesNotificationPreferencesCreate(pushToken: String,
-                                                     notificationPreference: NotificationPreference) -> Quack.Result<NotificationPreference> {
+    func devicesNotificationPreferencesCreate(pushToken: String,
+                                              notificationPreference: NotificationPreference) -> Quack.Result<NotificationPreference> {
         return respond(method: .post,
                        path: "/api/v1/devices/\(pushToken)/notificationPreferences",
                        body: notificationPreference.jsonBody(),
@@ -249,9 +249,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func devicesNotificationPreferencesCreate(pushToken: String,
-                                                     notificationPreference: NotificationPreference,
-                                                     completion: @escaping (Quack.Result<NotificationPreference>) -> Void) {
+    func devicesNotificationPreferencesCreate(pushToken: String,
+                                              notificationPreference: NotificationPreference,
+                                              completion: @escaping (Quack.Result<NotificationPreference>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/devices/\(pushToken)/notificationPreferences",
                      body: notificationPreference.jsonBody(),
@@ -263,16 +263,13 @@ public extension JPFanAppClient {
 
     // MARK: - Delete NotificationPreference
 
-    public func devicesNotificationPreferencesDelete(pushToken: String,
-                                                     id: Int) -> Quack.Void {
+    func devicesNotificationPreferencesDelete(pushToken: String, id: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/devices/\(pushToken)/notificationPreferences/\(id)",
                            headers: defaultHeader)
     }
 
-    public func devicesNotificationPreferencesDelete(pushToken: String,
-                                                     id: Int,
-                                                     completion: @escaping (Quack.Void) -> Void) {
+    func devicesNotificationPreferencesDelete(pushToken: String, id: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/devices/\(pushToken)/notificationPreferences/\(id)",
                          headers: defaultHeader,

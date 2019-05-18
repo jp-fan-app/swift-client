@@ -14,7 +14,7 @@ public extension JPFanAppClient {
 
     // MARK: - Login
 
-    public class LoginResult: Quack.Model {
+    class LoginResult: Quack.Model {
 
         public let token: String
         public let userID: Int
@@ -32,7 +32,7 @@ public extension JPFanAppClient {
 
     }
 
-    public func authLogin(email: String, password: String) -> Quack.Result<LoginResult> {
+    func authLogin(email: String, password: String) -> Quack.Result<LoginResult> {
         let body = Quack.JSONBody([
             "email" : email,
             "password": password
@@ -45,9 +45,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func authLogin(email: String,
-                          password: String,
-                          completion: @escaping (Quack.Result<LoginResult>) -> Void) {
+    func authLogin(email: String,
+                   password: String,
+                   completion: @escaping (Quack.Result<LoginResult>) -> Void) {
         let body = Quack.JSONBody([
             "email" : email,
             "password": password
@@ -63,7 +63,7 @@ public extension JPFanAppClient {
 
     // MARK: - Change Password
 
-    public func authChangePassword(password: String) -> Quack.Void {
+    func authChangePassword(password: String) -> Quack.Void {
         let body = Quack.JSONBody([
             "password": password
         ])
@@ -74,8 +74,8 @@ public extension JPFanAppClient {
                            requestModification: jsonEncodingModification)
     }
 
-    public func authChangePassword(password: String,
-                                   completion: @escaping (Quack.Void) -> Void) {
+    func authChangePassword(password: String,
+                            completion: @escaping (Quack.Void) -> Void) {
         let body = Quack.JSONBody([
             "password": password
         ])

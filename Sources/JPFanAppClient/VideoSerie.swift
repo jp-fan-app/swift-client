@@ -12,7 +12,7 @@ import Quack
 
 public extension JPFanAppClient {
 
-    public class VideoSerie: Quack.Model {
+    class VideoSerie: Quack.Model {
 
         public let id: Int?
         public var title: String
@@ -59,7 +59,7 @@ public extension JPFanAppClient {
 
     }
 
-    public class VideoSerieYoutubeVideo: Quack.Model {
+    class VideoSerieYoutubeVideo: Quack.Model {
 
         public let video: YoutubeVideo
         public let description: String?
@@ -74,7 +74,7 @@ public extension JPFanAppClient {
     }
 
 
-    public class VideoSerieYoutubeVideoRelation: Quack.Model {
+    class VideoSerieYoutubeVideoRelation: Quack.Model {
 
         public let id: Int?
 
@@ -109,14 +109,14 @@ public extension JPFanAppClient {
 
     // MARK: - Index
 
-    public func videoSeriesIndex() -> Quack.Result<[VideoSerie]> {
+    func videoSeriesIndex() -> Quack.Result<[VideoSerie]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/videoSeries",
                                 headers: defaultHeader,
                                 model: VideoSerie.self)
     }
 
-    public func videoSeriesIndex(completion: @escaping (Quack.Result<[VideoSerie]>) -> Void) {
+    func videoSeriesIndex(completion: @escaping (Quack.Result<[VideoSerie]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/videoSeries",
                               headers: defaultHeader,
@@ -126,15 +126,14 @@ public extension JPFanAppClient {
 
     // MARK: - Show
 
-    public func videoSeriesShow(id: Int) -> Quack.Result<VideoSerie> {
+    func videoSeriesShow(id: Int) -> Quack.Result<VideoSerie> {
         return respond(method: .get,
                        path: "/api/v1/videoSeries/\(id)",
                        headers: defaultHeader,
                        model: VideoSerie.self)
     }
 
-    public func videoSeriesShow(id: Int,
-                                completion: @escaping (Quack.Result<VideoSerie>) -> Void) {
+    func videoSeriesShow(id: Int, completion: @escaping (Quack.Result<VideoSerie>) -> Void) {
         respondAsync(method: .get,
                      path: "/api/v1/videoSeries/\(id)",
                      headers: defaultHeader,
@@ -144,7 +143,7 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-    public func videoSeriesCreate(videoSerie: VideoSerie) -> Quack.Result<VideoSerie> {
+    func videoSeriesCreate(videoSerie: VideoSerie) -> Quack.Result<VideoSerie> {
         return respond(method: .post,
                        path: "/api/v1/videoSeries",
                        body: videoSerie.jsonBody(),
@@ -153,7 +152,7 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func videoSeriesCreate(videoSerie: VideoSerie,
+    func videoSeriesCreate(videoSerie: VideoSerie,
                                   completion: @escaping (Quack.Result<VideoSerie>) -> Void) {
         respondAsync(method: .post,
                      path: "/api/v1/videoSeries",
@@ -166,8 +165,7 @@ public extension JPFanAppClient {
 
     // MARK: - Patch
 
-    public func videoSeriesPatch(id: Int,
-                                 videoSerie: VideoSerie) -> Quack.Result<VideoSerie> {
+    func videoSeriesPatch(id: Int, videoSerie: VideoSerie) -> Quack.Result<VideoSerie> {
         return respond(method: .patch,
                        path: "/api/v1/videoSeries/\(id)",
                        body: videoSerie.jsonBody(),
@@ -176,9 +174,9 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func videoSeriesPatch(id: Int,
-                                 videoSerie: VideoSerie,
-                                 completion: @escaping (Quack.Result<VideoSerie>) -> Void) {
+    func videoSeriesPatch(id: Int,
+                          videoSerie: VideoSerie,
+                          completion: @escaping (Quack.Result<VideoSerie>) -> Void) {
         respondAsync(method: .patch,
                      path: "/api/v1/videoSeries/\(id)",
                      body: videoSerie.jsonBody(),
@@ -190,15 +188,14 @@ public extension JPFanAppClient {
 
     // MARK: - Delete
 
-    public func videoSeriesDelete(id: Int) -> Quack.Void {
+    func videoSeriesDelete(id: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/videoSeries/\(id)",
                            headers: defaultAuthorizedHeader,
                            requestModification: jsonEncodingModification)
     }
 
-    public func videoSeriesDelete(id: Int,
-                                  completion: @escaping (Quack.Void) -> Void) {
+    func videoSeriesDelete(id: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/videoSeries/\(id)",
                          headers: defaultAuthorizedHeader,
@@ -208,15 +205,14 @@ public extension JPFanAppClient {
 
     // MARK: - Videos
 
-    public func videoSeriesVideos(id: Int) -> Quack.Result<[VideoSerieYoutubeVideo]> {
+    func videoSeriesVideos(id: Int) -> Quack.Result<[VideoSerieYoutubeVideo]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/videoSeries/\(id)/videos",
                                 headers: defaultHeader,
                                 model: VideoSerieYoutubeVideo.self)
     }
 
-    public func videoSeriesVideos(id: Int,
-                                  completion: @escaping (Quack.Result<[VideoSerieYoutubeVideo]>) -> Void) {
+    func videoSeriesVideos(id: Int, completion: @escaping (Quack.Result<[VideoSerieYoutubeVideo]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/videoSeries/\(id)/videos",
                               headers: defaultHeader,
@@ -226,15 +222,13 @@ public extension JPFanAppClient {
 
     // MARK: - Add Relation
 
-    public func videoSeriesVideosAdd(id: Int, videoID: Int) -> Quack.Void {
+    func videoSeriesVideosAdd(id: Int, videoID: Int) -> Quack.Void {
         return respondVoid(method: .post,
                            path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                            headers: defaultAuthorizedHeader)
     }
 
-    public func videoSeriesVideosAdd(id: Int,
-                                     videoID: Int,
-                                     completion: @escaping (Quack.Void) -> Void) {
+    func videoSeriesVideosAdd(id: Int, videoID: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .post,
                          path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                          headers: defaultAuthorizedHeader,
@@ -243,15 +237,13 @@ public extension JPFanAppClient {
 
     // MARK: - Remove Relation
 
-    public func videoSeriesVideosRemove(id: Int, videoID: Int) -> Quack.Void {
+    func videoSeriesVideosRemove(id: Int, videoID: Int) -> Quack.Void {
         return respondVoid(method: .delete,
                            path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                            headers: defaultAuthorizedHeader)
     }
 
-    public func videoSeriesVideosRemove(id: Int,
-                                        videoID: Int,
-                                        completion: @escaping (Quack.Void) -> Void) {
+    func videoSeriesVideosRemove(id: Int, videoID: Int, completion: @escaping (Quack.Void) -> Void) {
         respondVoidAsync(method: .delete,
                          path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                          headers: defaultAuthorizedHeader,
@@ -260,9 +252,9 @@ public extension JPFanAppClient {
 
     // MARK: - Patch Relation
 
-    public func videoSeriesVideosPatch(id: Int,
-                                       videoID: Int,
-                                       description: String) -> Quack.Result<VideoSerieYoutubeVideoRelation> {
+    func videoSeriesVideosPatch(id: Int,
+                                videoID: Int,
+                                description: String) -> Quack.Result<VideoSerieYoutubeVideoRelation> {
         return respond(method: .patch,
                        path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                        body: Quack.JSONBody(["description" : description]),
@@ -271,10 +263,10 @@ public extension JPFanAppClient {
                        requestModification: jsonEncodingModification)
     }
 
-    public func videoSeriesVideosPatch(id: Int,
-                                       videoID: Int,
-                                       description: String,
-                                       completion: @escaping (Quack.Result<VideoSerieYoutubeVideoRelation>) -> Void) {
+    func videoSeriesVideosPatch(id: Int,
+                                videoID: Int,
+                                description: String,
+                                completion: @escaping (Quack.Result<VideoSerieYoutubeVideoRelation>) -> Void) {
         respondAsync(method: .patch,
                      path: "/api/v1/videoSeries/\(id)/videos/\(videoID)",
                      body: Quack.JSONBody(["description" : description]),
@@ -286,14 +278,14 @@ public extension JPFanAppClient {
 
     // MARK: - VideoSeries Videos Relations
 
-    public func videoSeriesVideosRelations() -> Quack.Result<[VideoSerieYoutubeVideoRelation]> {
+    func videoSeriesVideosRelations() -> Quack.Result<[VideoSerieYoutubeVideoRelation]> {
         return respondWithArray(method: .get,
                                 path: "/api/v1/videoSeriesVideosRelations",
                                 headers: defaultHeader,
                                 model: VideoSerieYoutubeVideoRelation.self)
     }
 
-    public func videoSeriesVideosRelations(completion: @escaping (Quack.Result<[VideoSerieYoutubeVideoRelation]>) -> Void) {
+    func videoSeriesVideosRelations(completion: @escaping (Quack.Result<[VideoSerieYoutubeVideoRelation]>) -> Void) {
         respondWithArrayAsync(method: .get,
                               path: "/api/v1/videoSeriesVideosRelations",
                               headers: defaultHeader,

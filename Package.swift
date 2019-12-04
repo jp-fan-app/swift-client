@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "JPFanAppClient",
+    name: "jp-fan-app-client",
     products: [
         .library(name: "JPFanAppClient", targets: ["JPFanAppClient"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/cpageler93/Quack.git", from: "1.9.0"),
+        .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.0.0")
     ],
     targets: [
-        .target(name: "JPFanAppClient", dependencies: ["Quack"]),
+        .target(name: "JPFanAppClient", dependencies: ["AsyncHTTPClient"]),
         .testTarget(name: "JPFanAppClientTests", dependencies: ["JPFanAppClient"]),
     ]
 )

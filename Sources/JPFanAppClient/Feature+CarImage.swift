@@ -33,12 +33,6 @@ public extension JPFanAppClient {
 
     }
 
-    struct CarImageFile: Codable {
-
-        public let data: Data?
-
-    }
-
     // MARK: - Index
 
     func imagesIndex() -> EventLoopFuture<[CarImage]> {
@@ -89,12 +83,9 @@ public extension JPFanAppClient {
 
     // MARK: - File
 
-//    func imagesFile(id: Int) -> EventLoopFuture<CarImageFile> {
-//        return respond(method: .get,
-//                       path: "/api/v1/images/\(id)/file",
-//                       headers: defaultHeader,
-//                       model: CarImageFile.self)
-//    }
+    func imagesFile(id: Int) -> EventLoopFuture<Data> {
+        return get("/api/v1/images/\(id)/file")
+    }
 
     // MARK: - Helper
 

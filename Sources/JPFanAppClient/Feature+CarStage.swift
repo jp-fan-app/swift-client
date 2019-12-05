@@ -18,7 +18,7 @@ public extension JPFanAppClient {
         public let id: Int?
         public var carModelID: Int
         public var name: String
-        public var description: String
+        public var description: String?
         public var isStock: Bool
         public var ps: Double?
         public var nm: Double?
@@ -26,7 +26,7 @@ public extension JPFanAppClient {
         public let createdAt: Date?
         public let updatedAt: Date?
 
-        public init(carModelID: Int, name: String, description: String, isStock: Bool,
+        public init(carModelID: Int, name: String, description: String?, isStock: Bool,
                     ps: Double?, nm: Double?, lasiseInSeconds: Double?) {
             self.id = nil
             self.carModelID = carModelID

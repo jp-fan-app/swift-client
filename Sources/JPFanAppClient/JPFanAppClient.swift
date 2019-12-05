@@ -163,6 +163,31 @@ public class JPFanAppClient {
         return makeRequest(path, method: .GET, headers: defaultHeader)
     }
 
+    internal func getData(_ path: String) -> EventLoopFuture<Data> {
+        do {
+            let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
+                                                 method: .GET,
+                                                 headers: defaultHeader)
+            return client.execute(request: request).flatMapThrowing { response in
+                guard response.status.code < 400 else {
+                    throw ClientError.httpError(response.status.code)
+                }
+
+                guard var body = response.body else {
+                    throw ClientError.noBodyError(response.status.code)
+                }
+
+                guard let response = body.readBytes(length: body.readableBytes) else {
+                    throw ClientError.couldNotReadBody
+                }
+
+                return Data(response)
+            }
+        } catch {
+            return client.eventLoopGroup.next().makeFailedFuture(error)
+        }
+    }
+
     // MARK: - Post
 
     internal func post<Body: Codable, T: Decodable>(_ path: String, headers: HTTPHeaders, body: Body) -> EventLoopFuture<T> {

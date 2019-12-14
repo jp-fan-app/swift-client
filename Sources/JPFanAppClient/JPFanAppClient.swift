@@ -18,6 +18,7 @@ public class JPFanAppClient {
     public var authToken: String? = nil
 
     internal var baseURL: URL
+    internal var carImagesBaseURL: URL
     internal let client = HTTPClient(eventLoopGroupProvider: .createNew,
                                      configuration: HTTPClient.Configuration())
 
@@ -40,13 +41,16 @@ public class JPFanAppClient {
     internal let jsonEncoder = JSONEncoder()
 
     public static func production(accessToken: String) -> JPFanAppClient {
-        return JPFanAppClient(accessToken: accessToken, baseURL: URL(string: "https://api.jp-fan-app.de")!)
+        return JPFanAppClient(accessToken: accessToken,
+                              baseURL: URL(string: "https://api.jp-fan-app.de")!,
+                              carImagesBaseURL: URL(string: "https://car-images.jp-fan-app.de")!)
     }
 
     // MARK: - Init
 
-    public init(accessToken: String, baseURL: URL) {
+    public init(accessToken: String, baseURL: URL, carImagesBaseURL: URL) {
         self.baseURL = baseURL
+        self.carImagesBaseURL = carImagesBaseURL
         self.accessToken = accessToken
 
         jsonDecoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
@@ -163,8 +167,9 @@ public class JPFanAppClient {
         return makeRequest(path, method: .GET, headers: defaultHeader)
     }
 
-    internal func getData(_ path: String) -> EventLoopFuture<Data> {
+    internal func getData(baseURL: URL?, _ path: String) -> EventLoopFuture<Data> {
         do {
+            let baseURL = baseURL ?? self.baseURL
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
                                                  method: .GET,
                                                  headers: defaultHeader)

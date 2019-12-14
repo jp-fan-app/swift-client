@@ -84,7 +84,7 @@ public extension JPFanAppClient {
     // MARK: - File
 
     func imagesFile(id: Int) -> EventLoopFuture<Data> {
-        return getData("/api/v1/images/\(id)/file")
+        return getData(baseURL: carImagesBaseURL, "\(id).jpg")
     }
 
     // MARK: - Helper

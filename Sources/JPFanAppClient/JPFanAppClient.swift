@@ -105,7 +105,7 @@ public class JPFanAppClient {
                                                            body: Body) -> EventLoopFuture<T> {
         do {
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
-                                                 method: .GET,
+                                                 method: method,
                                                  headers: headers,
                                                  body: HTTPClient.Body.data(jsonEncoder.encode(body)))
             return submit(request: request)
@@ -119,7 +119,7 @@ public class JPFanAppClient {
                                             headers: HTTPHeaders) -> EventLoopFuture<T> {
         do {
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
-                                                 method: .GET,
+                                                 method: method,
                                                  headers: headers)
             return submit(request: request)
         } catch {
@@ -133,7 +133,7 @@ public class JPFanAppClient {
                                              body: Body) -> EventLoopFuture<Void> {
         do {
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
-                                                 method: .GET,
+                                                 method: method,
                                                  headers: headers,
                                                  body: HTTPClient.Body.data(jsonEncoder.encode(body)))
             return submit(request: request)
@@ -145,7 +145,7 @@ public class JPFanAppClient {
     internal func makeRequest(_ path: String, method: HTTPMethod, headers: HTTPHeaders) -> EventLoopFuture<Void> {
         do {
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
-                                                 method: .GET,
+                                                 method: method,
                                                  headers: headers)
             return submit(request: request)
         } catch {

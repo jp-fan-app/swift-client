@@ -43,31 +43,29 @@ public extension JPFanAppClient {
 
     // MARK: - Create
 
-//    func manufacturersCreate(manufacturer: ManufacturerModel) -> EventLoopFuture<ManufacturerModel> {
-//        let body = Quack.JSONBody([
-//            "name" : manufacturer.name
-//        ])
-//        return respond(method: .post,
-//                       path: "/api/v1/manufacturers",
-//                       body: body,
-//                       headers: defaultAuthorizedHeader,
-//                       model: ManufacturerModel.self,
-//                       requestModification: jsonEncodingModification)
-//    }
+    struct ManufacturerEdit: Codable {
+
+        public let name: String
+
+        public init(name: String) {
+            self.name = name
+        }
+
+    }
+
+    func manufacturersCreate(_ manufacturer: ManufacturerEdit) -> EventLoopFuture<ManufacturerModel> {
+        return post("/api/v1/manufacturers",
+                    headers: defaultAuthorizedHeader,
+                    body: manufacturer)
+    }
 
     // MARK: - Patch
 
-//    func manufacturersPatch(id: Int, manufacturer: ManufacturerModel) -> EventLoopFuture<ManufacturerModel> {
-//        let body = Quack.JSONBody([
-//            "name" : manufacturer.name
-//        ])
-//        return respond(method: .patch,
-//                       path: "/api/v1/manufacturers/\(id)",
-//                       body: body,
-//                       headers: defaultAuthorizedHeader,
-//                       model: ManufacturerModel.self,
-//                       requestModification: jsonEncodingModification)
-//    }
+    func manufacturersPatch(id: Int, manufacturer: ManufacturerEdit) -> EventLoopFuture<ManufacturerModel> {
+        return patch("/api/v1/manufacturers/\(id)",
+                     headers: defaultAuthorizedHeader,
+                     body: manufacturer)
+    }
 
     // MARK: - Delete
 

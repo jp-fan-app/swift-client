@@ -24,14 +24,7 @@ public extension JPFanAppClient {
     struct LoginResult: Codable {
 
         public let token: String
-        public let userID: Int
-
-        enum CodingKeys: String, CodingKey {
-
-            case token = "string"
-            case userID = "userID"
-
-        }
+        public let isAdmin: Bool
 
     }
 

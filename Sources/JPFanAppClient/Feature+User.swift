@@ -59,13 +59,13 @@ public extension JPFanAppClient {
     // MARK: - Index
 
     func usersIndex() -> EventLoopFuture<[User]> {
-        return get("/api/v1/user")
+        return get("/api/v1/user", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
 
     func usersShow(id: Int) -> EventLoopFuture<User> {
-        return get("/api/v1/user/\(id)")
+        return get("/api/v1/user/\(id)", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Create

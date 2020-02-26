@@ -93,7 +93,7 @@ public extension JPFanAppClient {
             let password: String
         }
         let body = ChangePasswordStruct(password: newPassword)
-        return delete("/api/v1/user/\(id)/changePassword", headers: defaultAuthorizedHeader, body: body)
+        return post("/api/v1/user/\(id)/changePassword", headers: defaultAuthorizedHeader, body: body)
     }
 
     // MARK: - Show Tokens

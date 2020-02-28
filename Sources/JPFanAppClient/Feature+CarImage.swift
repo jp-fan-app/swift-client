@@ -39,6 +39,10 @@ public extension JPFanAppClient {
         return get("/api/v1/images")
     }
 
+    func imagesIndexDraft() -> EventLoopFuture<[CarImage]> {
+        return get("/api/v1/images/draft")
+    }
+
     // MARK: - Show
 
     func imagesShow(id: Int) -> EventLoopFuture<CarImage> {
@@ -55,6 +59,12 @@ public extension JPFanAppClient {
 
     func imagesPatch(id: Int, image: CarImage) -> EventLoopFuture<CarImage> {
         return patch("/api/v1/images/\(id)", headers: defaultAuthorizedHeader, body: image)
+    }
+
+    // MARK: - Publish
+
+    func imagesPublish(id: Int) -> EventLoopFuture<CarImage> {
+        return post("/api/v1/images/\(id)/publish", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Delete

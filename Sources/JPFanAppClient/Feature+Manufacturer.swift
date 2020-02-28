@@ -35,6 +35,10 @@ public extension JPFanAppClient {
         return get("/api/v1/manufacturers")
     }
 
+    func manufacturersIndexDraft() -> EventLoopFuture<[ManufacturerModel]> {
+        return get("/api/v1/manufacturers/draft")
+    }
+
     // MARK: - Show
 
     func manufacturersShow(id: Int) -> EventLoopFuture<ManufacturerModel> {
@@ -67,6 +71,12 @@ public extension JPFanAppClient {
                      body: manufacturer)
     }
 
+    // MARK: - Publish
+
+    func manufacturersPublish(id: Int) -> EventLoopFuture<ManufacturerModel> {
+        return post("/api/v1/manufacturers/\(id)/publish", headers: defaultAuthorizedHeader)
+    }
+
     // MARK: - Delete
 
     func manufacturersDelete(id: Int) -> EventLoopFuture<Void> {
@@ -77,6 +87,10 @@ public extension JPFanAppClient {
 
     func manufacturersModels(id: Int) -> EventLoopFuture<[CarModel]> {
         return get("/api/v1/manufacturers/\(id)/models")
+    }
+
+    func manufacturersModelsDraft(id: Int) -> EventLoopFuture<[CarModel]> {
+        return get("/api/v1/manufacturers/\(id)/models/draft")
     }
 
 }

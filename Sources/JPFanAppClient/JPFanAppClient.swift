@@ -199,6 +199,10 @@ public class JPFanAppClient {
         return makeRequest(path, method: .POST, headers: headers, body: body)
     }
 
+    internal func post<T: Decodable>(_ path: String, headers: HTTPHeaders) -> EventLoopFuture<T> {
+        return makeRequest(path, method: .POST, headers: headers)
+    }
+
     internal func post<Body: Codable>(_ path: String, headers: HTTPHeaders, body: Body) -> EventLoopFuture<Void> {
         return makeRequest(path, method: .POST, headers: headers, body: body)
     }

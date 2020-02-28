@@ -47,6 +47,10 @@ public extension JPFanAppClient {
         return get("/api/v1/timings")
     }
 
+    func timingsIndexDraft() -> EventLoopFuture<[StageTiming]> {
+        return get("/api/v1/timings/draft")
+    }
+
     // MARK: - Show
 
     func timingsShow(id: Int) -> EventLoopFuture<StageTiming> {
@@ -63,6 +67,12 @@ public extension JPFanAppClient {
 
     func timingsPatch(id: Int, timing: StageTiming) -> EventLoopFuture<StageTiming> {
         return patch("/api/v1/timings/\(id)", headers: defaultAuthorizedHeader, body: timing)
+    }
+
+    // MARK: - Publish
+
+    func timingsPublish(id: Int) -> EventLoopFuture<StageTiming> {
+        return post("/api/v1/timings/\(id)/publish", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Delete

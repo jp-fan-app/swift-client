@@ -57,6 +57,11 @@ public extension JPFanAppClient {
     func stagesIndex() -> EventLoopFuture<[CarStage]> {
         return get("/api/v1/stages")
     }
+
+    func stagesIndexDraft() -> EventLoopFuture<[CarStage]> {
+        return get("/api/v1/stages/draft")
+    }
+
     // MARK: - Show
 
     func stagesShow(id: Int) -> EventLoopFuture<CarStage> {
@@ -75,6 +80,12 @@ public extension JPFanAppClient {
         return patch("/api/v1/stages/\(id)", headers: defaultAuthorizedHeader, body: stage)
     }
 
+    // MARK: - Publish
+
+    func stagesPublish(id: Int) -> EventLoopFuture<CarStage> {
+        return post("/api/v1/stages/\(id)/publish", headers: defaultAuthorizedHeader)
+    }
+
     // MARK: - Delete
 
     func stagesDelete(id: Int) -> EventLoopFuture<Void> {
@@ -87,10 +98,18 @@ public extension JPFanAppClient {
         return get("/api/v1/stages/\(id)/timings")
     }
 
+    func stagesTimingsDraft(id: Int) -> EventLoopFuture<[StageTiming]> {
+        return get("/api/v1/stages/\(id)/timings/draft")
+    }
+
     // MARK: - Videos
 
     func stagesVideos(id: Int) -> EventLoopFuture<[YoutubeVideo]> {
         return get("/api/v1/stages/\(id)/videos")
+    }
+
+    func stagesVideosDraft(id: Int) -> EventLoopFuture<[YoutubeVideo]> {
+        return get("/api/v1/stages/\(id)/videos/draft")
     }
 
     // MARK: - Add Relation
@@ -103,6 +122,12 @@ public extension JPFanAppClient {
 
     func stagesVideosRemove(id: Int, videoID: Int) -> EventLoopFuture<Void> {
         return delete("/api/v1/stages/\(id)/videos/\(videoID)", headers: defaultAuthorizedHeader)
+    }
+
+    // MARK: - Publish Relation
+
+    func stagesVideosPublish(id: Int, videoID: Int) -> EventLoopFuture<Void> {
+        return post("/api/v1/stages/\(id)/videos/\(videoID)/publish", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Stages Videos Relations

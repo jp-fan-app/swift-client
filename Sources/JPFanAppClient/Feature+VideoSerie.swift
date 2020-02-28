@@ -63,6 +63,10 @@ public extension JPFanAppClient {
         return get("/api/v1/videoSeries")
     }
 
+    func videoSeriesIndexDraft() -> EventLoopFuture<[VideoSerie]> {
+        return get("/api/v1/videoSeries/draft")
+    }
+
     // MARK: - Show
 
     func videoSeriesShow(id: Int) -> EventLoopFuture<VideoSerie> {
@@ -81,6 +85,12 @@ public extension JPFanAppClient {
         return patch("/api/v1/videoSeries/\(id)", headers: defaultAuthorizedHeader, body: videoSerie)
     }
 
+    // MARK: - Publish
+
+    func videoSeriesPublish(id: Int) -> EventLoopFuture<VideoSerie> {
+        return post("/api/v1/videoSeries/\(id)/publish", headers: defaultAuthorizedHeader)
+    }
+
     // MARK: - Delete
 
     func videoSeriesDelete(id: Int) -> EventLoopFuture<Void> {
@@ -93,6 +103,10 @@ public extension JPFanAppClient {
         return get("/api/v1/videoSeries/\(id)/videos")
     }
 
+    func videoSeriesVideosDraft(id: Int) -> EventLoopFuture<[VideoSerieYoutubeVideo]> {
+        return get("/api/v1/videoSeries/\(id)/videos/draft")
+    }
+
     // MARK: - Add Relation
 
     func videoSeriesVideosAdd(id: Int, videoID: Int) -> EventLoopFuture<Void> {
@@ -103,6 +117,12 @@ public extension JPFanAppClient {
 
     func videoSeriesVideosRemove(id: Int, videoID: Int) -> EventLoopFuture<Void> {
         return delete("/api/v1/videoSeries/\(id)/videos/\(videoID)", headers: defaultAuthorizedHeader)
+    }
+
+    // MARK: - Publish Relation
+
+    func videoSeriesVideosPublish(id: Int, videoID: Int) -> EventLoopFuture<Void> {
+        return post("/api/v1/videoSeries/\(id)/videos/\(videoID)/publish", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Patch Relation

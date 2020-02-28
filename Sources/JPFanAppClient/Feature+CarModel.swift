@@ -62,6 +62,10 @@ public extension JPFanAppClient {
         return get("/api/v1/models")
     }
 
+    func modelsIndexDraft() -> EventLoopFuture<[CarModel]> {
+        return get("/api/v1/models/draft")
+    }
+
     // MARK: - Show
 
     func modelsShow(id: Int) -> EventLoopFuture<CarModel> {
@@ -80,6 +84,12 @@ public extension JPFanAppClient {
         return patch("/api/v1/models/\(id)", headers: defaultAuthorizedHeader, body: model)
     }
 
+    // MARK: - Publish
+
+    func modelsPublish(id: Int) -> EventLoopFuture<CarModel> {
+        return post("/api/v1/models/\(id)/publish", headers: defaultAuthorizedHeader)
+    }
+
     // MARK: - Delete
 
     func modelsDelete(id: Int) -> EventLoopFuture<Void> {
@@ -92,10 +102,18 @@ public extension JPFanAppClient {
         return get("/api/v1/models/\(id)/images")
     }
 
+    func modelsImagesDraft(id: Int) -> EventLoopFuture<[CarImage]> {
+        return get("/api/v1/models/\(id)/images/draft")
+    }
+
     // MARK: - Images
 
     func modelsStages(id: Int) -> EventLoopFuture<[CarStage]> {
         return get("/api/v1/models/\(id)/stages")
+    }
+
+    func modelsStagesDraft(id: Int) -> EventLoopFuture<[CarStage]> {
+        return get("/api/v1/models/\(id)/stages/draft")
     }
 
 }

@@ -40,7 +40,7 @@ public extension JPFanAppClient {
     }
 
     func imagesIndexDraft() -> EventLoopFuture<[CarImage]> {
-        return get("/api/v1/images/draft")
+        return get("/api/v1/images/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show

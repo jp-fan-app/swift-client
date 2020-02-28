@@ -64,7 +64,7 @@ public extension JPFanAppClient {
     }
 
     func videoSeriesIndexDraft() -> EventLoopFuture<[VideoSerie]> {
-        return get("/api/v1/videoSeries/draft")
+        return get("/api/v1/videoSeries/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
@@ -104,7 +104,7 @@ public extension JPFanAppClient {
     }
 
     func videoSeriesVideosDraft(id: Int) -> EventLoopFuture<[VideoSerieYoutubeVideo]> {
-        return get("/api/v1/videoSeries/\(id)/videos/draft")
+        return get("/api/v1/videoSeries/\(id)/videos/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Add Relation

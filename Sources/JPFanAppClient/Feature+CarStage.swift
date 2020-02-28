@@ -59,7 +59,7 @@ public extension JPFanAppClient {
     }
 
     func stagesIndexDraft() -> EventLoopFuture<[CarStage]> {
-        return get("/api/v1/stages/draft")
+        return get("/api/v1/stages/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
@@ -99,7 +99,7 @@ public extension JPFanAppClient {
     }
 
     func stagesTimingsDraft(id: Int) -> EventLoopFuture<[StageTiming]> {
-        return get("/api/v1/stages/\(id)/timings/draft")
+        return get("/api/v1/stages/\(id)/timings/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Videos
@@ -109,7 +109,7 @@ public extension JPFanAppClient {
     }
 
     func stagesVideosDraft(id: Int) -> EventLoopFuture<[YoutubeVideo]> {
-        return get("/api/v1/stages/\(id)/videos/draft")
+        return get("/api/v1/stages/\(id)/videos/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Add Relation

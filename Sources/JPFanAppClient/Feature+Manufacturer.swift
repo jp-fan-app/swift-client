@@ -36,7 +36,7 @@ public extension JPFanAppClient {
     }
 
     func manufacturersIndexDraft() -> EventLoopFuture<[ManufacturerModel]> {
-        return get("/api/v1/manufacturers/draft")
+        return get("/api/v1/manufacturers/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
@@ -90,7 +90,7 @@ public extension JPFanAppClient {
     }
 
     func manufacturersModelsDraft(id: Int) -> EventLoopFuture<[CarModel]> {
-        return get("/api/v1/manufacturers/\(id)/models/draft")
+        return get("/api/v1/manufacturers/\(id)/models/draft", headers: defaultAuthorizedHeader)
     }
 
 }

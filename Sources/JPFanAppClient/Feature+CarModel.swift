@@ -63,7 +63,7 @@ public extension JPFanAppClient {
     }
 
     func modelsIndexDraft() -> EventLoopFuture<[CarModel]> {
-        return get("/api/v1/models/draft")
+        return get("/api/v1/models/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
@@ -103,7 +103,7 @@ public extension JPFanAppClient {
     }
 
     func modelsImagesDraft(id: Int) -> EventLoopFuture<[CarImage]> {
-        return get("/api/v1/models/\(id)/images/draft")
+        return get("/api/v1/models/\(id)/images/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Images
@@ -113,7 +113,7 @@ public extension JPFanAppClient {
     }
 
     func modelsStagesDraft(id: Int) -> EventLoopFuture<[CarStage]> {
-        return get("/api/v1/models/\(id)/stages/draft")
+        return get("/api/v1/models/\(id)/stages/draft", headers: defaultAuthorizedHeader)
     }
 
 }

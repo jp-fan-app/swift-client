@@ -48,7 +48,7 @@ public extension JPFanAppClient {
     }
 
     func timingsIndexDraft() -> EventLoopFuture<[StageTiming]> {
-        return get("/api/v1/timings/draft")
+        return get("/api/v1/timings/draft", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show

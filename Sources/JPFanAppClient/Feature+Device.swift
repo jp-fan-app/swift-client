@@ -49,13 +49,13 @@ public extension JPFanAppClient {
     // MARK: - Index
 
     func devicesIndex() -> EventLoopFuture<[Device]> {
-        return get("/api/v1/devices")
+        return get("/api/v1/devices", headers: defaultAuthorizedHeader)
     }
 
     // MARK: - Show
 
     func devicesShow(pushToken: String) -> EventLoopFuture<Device> {
-        return get("/api/v1/devices/\(pushToken)")
+        return get("/api/v1/devices/\(pushToken)", headers: defaultHeader)
     }
 
     // MARK: - Create
@@ -78,17 +78,14 @@ public extension JPFanAppClient {
 
     // MARK: - Set Test Device
 
-//    func devicesSetTestDevice(pushToken: String, isTestDevice: Bool) -> EventLoopFuture<Device> {
-//        let body = Quack.JSONBody([
-//            "bool": isTestDevice
-//        ])
-//        return respond(method: .post,
-//                       path: "/api/v1/devices/\(pushToken)/setTestDevice",
-//                       body: body,
-//                       headers: defaultAuthorizedHeader,
-//                       model: Device.self,
-//                       requestModification: jsonEncodingModification)
-//    }
+    func devicesSetTestDevice(pushToken: String, isTestDevice: Bool) -> EventLoopFuture<Device> {
+        struct SetTestDevice: Codable {
+            let bool: Bool
+        }
+        return post("/api/v1/devices/\(pushToken)/setTestDevice",
+                    headers: defaultAuthorizedHeader,
+                    body: SetTestDevice(bool: isTestDevice))
+    }
 
     // MARK: - Ping
 

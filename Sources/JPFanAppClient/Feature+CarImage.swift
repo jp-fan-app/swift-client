@@ -75,21 +75,15 @@ public extension JPFanAppClient {
 
     // MARK: - Upload
 
-//    func imagesUpload(id: Int, imageData: Data) -> EventLoopFuture<Void> {
-//        let boundary = NSUUID().uuidString
-//        var headers = defaultAuthorizedHeader
-//        headers["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
-//
-//        let formDataBody = multipartFormDataBody(imageData: imageData,
-//                                                 boundary: boundary)
-//
-//        let body = Quack.DataBody(formDataBody)
-//
-//        return respondVoid(method: .post,
-//                           path: "/api/v1/images/\(id)/upload",
-//                           body: body,
-//                           headers: headers)
-//    }
+    func imagesUpload(id: Int, imageData: Data) -> EventLoopFuture<Void> {
+        let boundary = NSUUID().uuidString
+        var headers = defaultAuthorizedHeader
+        headers.add(name: "Content-Type", value: "multipart/form-data; boundary=\(boundary)")
+
+        let formDataBody = multipartFormDataBody(imageData: imageData,
+                                                 boundary: boundary)
+        return post("/api/v1/images/\(id)/upload", headers: headers, body: formDataBody)
+    }
 
     // MARK: - File
 

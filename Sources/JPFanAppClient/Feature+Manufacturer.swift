@@ -17,12 +17,14 @@ public extension JPFanAppClient {
 
         public let id: Int?
         public var name: String
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
         public init(name: String) {
             self.id = nil
             self.name = name
+            self.isDraft = false
             self.createdAt = nil
             self.updatedAt = nil
         }

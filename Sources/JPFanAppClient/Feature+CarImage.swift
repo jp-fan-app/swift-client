@@ -19,6 +19,7 @@ public extension JPFanAppClient {
         public var carModelID: Int
         public var copyrightInformation: String
         public let hasUpload: Bool
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -29,6 +30,7 @@ public extension JPFanAppClient {
             self.hasUpload = false
             self.createdAt = nil
             self.updatedAt = nil
+            self.isDraft = false
         }
 
     }

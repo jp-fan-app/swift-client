@@ -19,6 +19,7 @@ public extension JPFanAppClient {
         public var title: String
         public var description: String
         public var isPublic: Bool
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -29,6 +30,7 @@ public extension JPFanAppClient {
             self.title = title
             self.description = description
             self.isPublic = isPublic
+            self.isDraft = false
             self.createdAt = nil
             self.updatedAt = nil
         }

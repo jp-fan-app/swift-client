@@ -21,6 +21,7 @@ public extension JPFanAppClient {
         public var second1: Double?
         public var second2: Double?
         public var second3: Double?
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -35,6 +36,7 @@ public extension JPFanAppClient {
             self.second1 = second1
             self.second2 = second2
             self.second3 = second3
+            self.isDraft = false
             self.createdAt = nil
             self.updatedAt = nil
         }

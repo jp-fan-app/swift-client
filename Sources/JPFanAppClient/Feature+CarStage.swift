@@ -23,6 +23,7 @@ public extension JPFanAppClient {
         public var ps: Double?
         public var nm: Double?
         public var lasiseInSeconds: Double?
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -36,6 +37,7 @@ public extension JPFanAppClient {
             self.ps = ps
             self.nm = nm
             self.lasiseInSeconds = lasiseInSeconds
+            self.isDraft = false
             self.createdAt = nil
             self.updatedAt = nil
         }

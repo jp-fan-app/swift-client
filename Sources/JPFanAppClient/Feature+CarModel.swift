@@ -36,6 +36,7 @@ public extension JPFanAppClient {
         public var transmissionType: TransmissionType
         public var axleType: AxleType
         public var mainImageID: Int?
+        public let isDraft: Bool
         public let createdAt: Date?
         public let updatedAt: Date?
 
@@ -50,6 +51,7 @@ public extension JPFanAppClient {
             self.transmissionType = transmissionType
             self.axleType = axleType
             self.mainImageID = mainImageID
+            self.isDraft = false
             self.createdAt = nil
             self.updatedAt = nil
         }

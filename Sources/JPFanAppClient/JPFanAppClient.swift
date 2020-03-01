@@ -104,10 +104,36 @@ public class JPFanAppClient {
                                                            headers: HTTPHeaders,
                                                            body: Body) -> EventLoopFuture<T> {
         do {
+            return try makeRequest(path, method: method, headers: headers, data: jsonEncoder.encode(body))
+        } catch {
+            return client.eventLoopGroup.next().makeFailedFuture(error)
+        }
+    }
+
+    internal func makeRequest<T: Decodable>(_ path: String,
+                                            method: HTTPMethod,
+                                            headers: HTTPHeaders,
+                                            data: Data) -> EventLoopFuture<T> {
+        do {
             let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
                                                  method: method,
                                                  headers: headers,
-                                                 body: HTTPClient.Body.data(jsonEncoder.encode(body)))
+                                                 body: HTTPClient.Body.data(data))
+            return submit(request: request)
+        } catch {
+            return client.eventLoopGroup.next().makeFailedFuture(error)
+        }
+    }
+
+    internal func makeRequest(_ path: String,
+                              method: HTTPMethod,
+                              headers: HTTPHeaders,
+                              data: Data) -> EventLoopFuture<Void> {
+        do {
+            let request = try HTTPClient.Request(url: baseURL.appendingPathComponent(path),
+                                                 method: method,
+                                                 headers: headers,
+                                                 body: HTTPClient.Body.data(data))
             return submit(request: request)
         } catch {
             return client.eventLoopGroup.next().makeFailedFuture(error)
@@ -205,6 +231,10 @@ public class JPFanAppClient {
 
     internal func post<Body: Codable>(_ path: String, headers: HTTPHeaders, body: Body) -> EventLoopFuture<Void> {
         return makeRequest(path, method: .POST, headers: headers, body: body)
+    }
+
+    internal func post(_ path: String, headers: HTTPHeaders, data: Data) -> EventLoopFuture<Void> {
+        return makeRequest(path, method: .POST, headers: headers, data: data)
     }
 
     internal func post(_ path: String, headers: HTTPHeaders) -> EventLoopFuture<Void> {

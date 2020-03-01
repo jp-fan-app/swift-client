@@ -82,7 +82,7 @@ public extension JPFanAppClient {
 
         let formDataBody = multipartFormDataBody(imageData: imageData,
                                                  boundary: boundary)
-        return post("/api/v1/images/\(id)/upload", headers: headers, body: formDataBody)
+        return post("/api/v1/images/\(id)/upload", headers: headers, data: formDataBody)
     }
 
     // MARK: - File

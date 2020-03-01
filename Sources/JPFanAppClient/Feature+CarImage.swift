@@ -78,7 +78,7 @@ public extension JPFanAppClient {
     func imagesUpload(id: Int, imageData: Data) -> EventLoopFuture<Void> {
         let boundary = NSUUID().uuidString
         var headers = defaultAuthorizedHeader
-        headers.add(name: "Content-Type", value: "multipart/form-data; boundary=\(boundary)")
+        headers.replaceOrAdd(name: "Content-Type", value: "multipart/form-data; boundary=\(boundary)")
 
         let formDataBody = multipartFormDataBody(imageData: imageData,
                                                  boundary: boundary)

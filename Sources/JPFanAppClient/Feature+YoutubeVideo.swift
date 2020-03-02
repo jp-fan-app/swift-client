@@ -40,7 +40,7 @@ public extension JPFanAppClient {
 
     // MARK: - Show by VideoID
 
-    func videosShow(videoID: String) -> EventLoopFuture<YoutubeVideo> {
+    func videosShow(videoID: String) -> EventLoopFuture<[YoutubeVideo]> {
         return get("/api/v1/videos/byVideoID/\(videoID)")
     }
 

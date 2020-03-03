@@ -28,8 +28,13 @@ public extension JPFanAppClient {
 
     struct YoutubeVideoSearchRequest: Codable {
 
-        let publishedAtNewer: Date?
-        let query: String?
+        public let publishedAtNewer: Date?
+        public let query: String?
+
+        public init(publishedAtNewer: Date? = nil, query: String? = nil) {
+            self.publishedAtNewer = publishedAtNewer
+            self.query = query
+        }
 
     }
 

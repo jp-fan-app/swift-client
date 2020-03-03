@@ -58,6 +58,12 @@ public class JPFanAppClient {
             let dateStr = try container.decode(String.self)
             return JPFanAppClient.dateFormatter.date(from: dateStr) ?? Date()
         })
+
+        jsonEncoder.dateEncodingStrategy = .custom({ (date, encoder) in
+            let string = JPFanAppClient.dateFormatter.string(from: date)
+            var container = encoder.singleValueContainer()
+            try container.encode(string)
+        })
     }
 
     deinit {

@@ -26,10 +26,21 @@ public extension JPFanAppClient {
 
     }
 
+    struct YoutubeVideoSearchRequest: Codable {
+
+        let publishedAtNewer: Date?
+        let query: String?
+
+    }
+
     // MARK: - Index
 
     func videosIndex() -> EventLoopFuture<[YoutubeVideo]> {
         return get("/api/v1/videos")
+    }
+
+    func videosSearch(_ request: YoutubeVideoSearchRequest) -> EventLoopFuture<[YoutubeVideo]> {
+        return post("/api/v1/videos/search", headers: defaultHeader, body: request)
     }
 
     // MARK: - Show
